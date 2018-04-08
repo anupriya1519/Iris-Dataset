@@ -1,0 +1,15 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+file2<- read.csv('C:/Users/Anu/Downloads/ds_query_test_shipment_log.csv')
+head(file1$booking_id)
+file1<- read.csv('C:/Users/Anu/Downloads/ds_query_test_booking.csv')
+library(sqldf)
+query<- sqldf('select file1.price,(file2.pickup_city||" " ||file2.pickup_state) as pickup_location,(file2.delivery_city|| " " ||file2.delivery_state) as delivery_location,(file2.price-file1.price) as variance from file2  inner join file1 on file2.booking_id=file1.booking_id')
+query
+write.csv(query, file = "Question2_Sol.csv")
+```
+
